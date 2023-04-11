@@ -1,0 +1,78 @@
+
+
+<div class="w-8/12 flex flex-col">
+<label  class="text-white w-full text-2xl mb-2">{{'Keep in touch !'|translate}}</label>
+
+
+
+
+<form [formGroup]="contactForm"  class="example-form" (submit)="submitRequest()">
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>{{'contact.name'|translate}}</mat-label>
+
+    <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher" placeholder="Ex. Vadim Calancea">
+
+
+
+    <mat-error *ngIf="contactForm.get('name')?.hasError('required') && !contactForm.get('name')?.hasError('required')">
+     {{'contact.validName'|translate}}
+    </mat-error>
+    <mat-error *ngIf="contactForm.get('name')?.hasError('required')">
+      {{'Name is'|translate}} <strong>{{'required'|translate}}</strong>
+    </mat-error>
+
+  </mat-form-field>
+
+
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>{{'Phone/Viber/WhatsApp'|translate}}</mat-label>
+
+    <input type="text" matInput formControlName="phone" [errorStateMatcher]="matcher"
+      placeholder="Ex. 0686 68 297 / +373 686 68 297 ">
+
+
+
+    <mat-error *ngIf="contactForm.get('phone')?.hasError('pattern') && !contactForm.get('phone')?.hasError('required')">
+      {{'Please enter a valid phone number'|translate}}
+    </mat-error>
+
+    <mat-error *ngIf="contactForm.get('phone')?.hasError('required')">
+     {{'Phone is'|translate}} <strong>{{'required'|translate}}</strong>
+    </mat-error>
+
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>{{'E-mail'|translate}}</mat-label>
+
+    <input type="email" matInput formControlName="email" [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com">
+
+
+
+    <mat-error *ngIf="contactForm.get('email')?.hasError('email') && !contactForm.get('email')?.hasError('required')">
+        {{'Please enter a valid email address'|translate}}
+    </mat-error>
+    <mat-error *ngIf="contactForm.get('email')?.hasError('required')">
+      {{'Email is'|translate}} <strong>{{'required'|translate}}</strong>
+    </mat-error>
+
+  </mat-form-field>
+
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>{{'Leave a comment'|translate}}</mat-label>
+    <textarea matInput placeholder="{{'Ex. Recommendations, suggestions, questions for products...'|translate}}"  formControlName="message"></textarea>
+  </mat-form-field>
+
+
+      <button type="submit" style="width: 100%;" [disabled]="!contactForm.get('phone')?.valid"  color="warn" mat-flat-button>{{'Send'|translate}}</button>
+
+
+</form>
+</div>

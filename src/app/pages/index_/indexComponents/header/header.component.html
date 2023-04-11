@@ -1,0 +1,36 @@
+<swiper [config]="config" class=" w-full bg-black ">
+  <ng-template swiperSlide *ngFor="let obj of arrayHeader   " class="flex justify-center  ">
+
+    <div [ngStyle]="{'background-image': 'url(' + obj.img + ')'}"
+      class="bg-cover bg-center  w-full flex justify-center items-center min-[885px]:min-h-screen max-[885px]:h-[500px]   max-[626px]:h-[300px] ">
+
+      <p class="flex w-full  " [ngClass]="{'justify-center': obj.img ==='./assets/images/indexImg/index1.jpg',
+    'justify-start': obj.img !=='./assets/images/indexImg/index1.jpg'}">
+
+        <span class="text-orange-600 text-center min-[500px]:m-24  min-[1170px]:text-3xl  text-2xl  max-[884px]:text-xl
+         w-8/12 min-[1170px]:w-5/12 max-[1170px]:w-4/12  max-[626px]:m-10 max-[626px]:text-base  max-[475px]:text-xs max-[475px]:m-8  max-[300px]:m-2 max-[300px]:w-6/12
+          max-[475px]:font-extralight  ">{{hiddenWord}} <span *ngIf="showCursor">{{ cursor }}</span></span>
+
+
+      </p>
+
+    </div>
+
+
+    <!-- <img src="{{obj.img}}"
+    class="bg-cover  bg-center w-full  " id="index"> -->
+
+
+
+
+    <!-- <span class=" text-3xl  absolute text-center max-[1732px]:text-2xl  max-[1448px]:text-base max-[1519px]:w-4/12  max-[1200px]:top-52  max-[627px]:top-32
+       max-[455px]:w-3/12
+    max-[1448px]:w-4/12 max-[490px]:right-3.5  max-[412px]:text-sm  max-[375px]:top-24 max-[329px]:text-xs
+  right-7 top-96  z-50 w-5/12
+   text-orange-600  font-semibold">
+      {{obj.title2}}</span> -->
+
+  </ng-template>
+  <div class="bg-white w-full h-0.5"> </div>
+
+</swiper>

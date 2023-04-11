@@ -1,0 +1,53 @@
+<form  [formGroup]="formCall" class=" flex flex-col justify-center items-center bg-white rounded-lg shadow-md p-7" >
+
+<mat-label class="m-2 p-2 text-center text-orange-600" color="warn"> {{'Please provide us with a contact number, an engineer will call you as soon as possible.' |translate}}</mat-label>
+
+
+  <mat-form-field class="example-full-width">
+    <mat-label>{{'contact.name'|translate}}</mat-label>
+
+    <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher" placeholder="Ex. Vadim">
+
+
+
+    <mat-error *ngIf="formCall.get('name')?.hasError('required') && !formCall.get('name')?.hasError('required')">
+     {{'Please enter a valid name'|translate}}
+    </mat-error>
+    <mat-error *ngIf="formCall.get('name')?.hasError('required')">
+    {{'Name is'|translate}} <strong>{{'required'|translate}}</strong>
+    </mat-error>
+
+  </mat-form-field>
+
+
+
+
+  <mat-form-field >
+    <mat-label>{{'Phone Number'|translate}}</mat-label>
+
+    <input type="text" matInput formControlName="phone" [errorStateMatcher]="matcher" placeholder="Ex. 0686 68 297 / +373 686 68 297 ">
+
+
+
+    <mat-error *ngIf="formCall.get('phone')?.hasError('pattern') && !formCall.get('phone')?.hasError('required')">
+      {{'Please enter a valid phone number'|translate}}
+    </mat-error>
+
+    <mat-error *ngIf="formCall.get('phone')?.hasError('required')">
+      {{'Phone is'|translate}} <strong>{{'required'|translate}}</strong>
+    </mat-error>
+
+  </mat-form-field>
+
+
+<div mat-dialog-actions style="display: flex; justify-content: center;">
+  <button mat-raised-button  color="warn" [disabled]="!formCall.valid" (click)="toggleRequestCall()" cdkFocusInitial>{{'call.Request a Call' |translate}}</button>
+  <button color="primary" style="margin-top: 9px;"  mat-raised-button  (click)="onNoClick()">{{'No Thanks'|translate}}</button>
+
+
+</div>
+
+
+
+
+</form>

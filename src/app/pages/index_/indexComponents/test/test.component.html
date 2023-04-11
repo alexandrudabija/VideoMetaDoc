@@ -1,0 +1,191 @@
+<div style="background-image: url('./assets/images/test/test.jpg')"
+  class="bg-cover bg-center bg-current w-full h-[469px] max-[800px]:h-auto ">
+
+
+
+
+  <div *ngIf="!testShow; else test" class="h-[469px] w-full  max-[608px]:w-[400px] max-[491px]:w-full">
+    <div class="flex justify-center items-center flex-col w-5/12 m-14">
+      <p class="max-[627px]:text-xl text-3xl  font-semibold text-center text-orange-600">
+        {{'test.Know the cost of a video surveillance system for YOUR Property.' |translate}}
+      </p>
+
+      <button (click)="testInit()" mat-raised-button color="warn" class="mt-14 animate-bounce duration-300"
+        style="padding: 30px">
+        {{'test.Know the cost'|translate}}
+      </button>
+    </div>
+  </div>
+
+  <ng-template #test>
+    <mat-stepper linear class=" max-[800px]:h-auto  h-[469px] bg-transparent w-full "
+      [orientation]="(stepperOrientation | async)!">
+
+
+
+      <mat-step linear [stepControl]="firstFormGroup" label="{{'questionsArray[0].question' |translate}}"
+        errorMessage="{{'answer is required'|translate}}">
+        <form [formGroup]="firstFormGroup">
+
+          <mat-label>{{'questionsArray[0].question' |translate}}</mat-label>
+
+          <!-- {{ 'OurServices.' + ourServices|translate}} -->
+          <!-- {{ 'OurServices.' + item.name |translate}} -->
+          <mat-radio-group formControlName="firstCtrl" class="flex flex-col">
+            <mat-radio-button *ngFor="let obj of this.questionsArray[0].answers" [value]="obj.answer" required>
+              {{'answer1.' + obj.answer |translate}}
+
+            </mat-radio-button>
+          </mat-radio-group>
+
+
+          <div>
+            <button mat-raised-button matStepperNext class="m-2 mt-12" color="warn">{{'test.Next'|translate}}</button>
+          </div>
+        </form>
+      </mat-step>
+
+
+      <mat-step linear [stepControl]="secondFormGroup" label="{{'questionsArray[1].question'|translate}}"
+        errorMessage="{{'answer is required'|translate}}">
+
+        <form [formGroup]="secondFormGroup">
+
+
+          <mat-label>{{'questionsArray[1].question'|translate}}</mat-label>
+
+
+          <mat-radio-group formControlName="secondCtrl" class="flex flex-col">
+            <mat-radio-button *ngFor="let obj of this.questionsArray[1].answers" [value]="obj.answer" required>
+              {{'answer2.' + obj.answer |translate}}
+
+            </mat-radio-button>
+          </mat-radio-group>
+
+          <div>
+            <button mat-raised-button matStepperPrevious color="primary"
+              class="m-2 mt-12">{{'test.Back'|translate}}</button>
+            <button mat-raised-button matStepperNext color="warn" class="m-2 mt-12">{{'test.Next'|translate}}</button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step linear [stepControl]="conditionFormGroup" label="{{'questionsArray[2].question'|translate}}"
+        errorMessage="{{'answer is required'|translate}}"
+        *ngIf="this.secondFormGroup.get('secondCtrl')?.value ==='A personal home'">
+
+        <form [formGroup]="conditionFormGroup">
+
+
+          <mat-label>{{'questionsArray[2].question'|translate}}</mat-label>
+
+
+          <mat-radio-group formControlName="ctrlCondition" class="flex flex-col">
+            <mat-radio-button *ngFor="let obj of this.questionsArray[2].answers" [value]="obj.answer" required>
+              {{'answer3.' + obj.answer|translate}}
+
+            </mat-radio-button>
+          </mat-radio-group>
+
+          <div>
+            <button mat-raised-button matStepperPrevious color="primary"
+              class="m-2 mt-12">{{'test.Back'|translate}}</button>
+            <button mat-raised-button matStepperNext color="warn" class="m-2 mt-12">{{'test.Next'|translate}}</button>
+          </div>
+        </form>
+
+      </mat-step>
+
+      <mat-step linear [stepControl]="thirdFormGroup" label="{{'questionsArray[3].question'|translate}}"
+        errorMessage="{{'answer is required'|translate}}">
+        <form [formGroup]="thirdFormGroup">
+
+          <mat-label>{{'questionsArray[3].question'|translate}}</mat-label>
+
+
+          <mat-radio-group matInput formControlName="thirdCtrl" class="flex flex-col">
+            <mat-radio-button *ngFor="let obj of this.questionsArray[3].answers" [value]="obj.answer" required>
+              {{'answer4.' +obj.answer|translate}}
+
+            </mat-radio-button>
+          </mat-radio-group>
+
+
+          <div>
+            <button mat-raised-button matStepperPrevious color="primary"
+              class="m-2 mt-12">{{'test.Back'|translate}}</button>
+            <button mat-raised-button matStepperNext color="warn" class="m-2 mt-12">{{'test.Next'|translate}}</button>
+          </div>
+        </form>
+      </mat-step>
+
+
+      <mat-step [stepControl]="personalData" label="{{'Contact details'|translate}}">
+        <form [formGroup]="personalData" class="flex flex-col w-9/12">
+
+
+
+          <mat-label class="text-lg py-1 max-[1081px]:text-base">{{'test.question5'|translate}}</mat-label>
+
+          <mat-form-field appearance="fill">
+
+
+            <mat-label>{{'Phone/Viber/WhatsApp'|translate}}</mat-label>
+            <input matInput formControlName="phone" placeholder=" Ex. 0686 68 297 / +373 686 68 297 " required>
+
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>{{'E-mail'|translate}}</mat-label>
+            <input matInput formControlName="email" placeholder=" Ex. Vadim@gmail.com" required>
+
+
+          </mat-form-field>
+
+
+
+          <mat-checkbox formControlName="tickBox" color="warn" (click)="onTickBox()"
+            [disabled]="true"><mat-label>{{'test.I want a direct visit to the location for
+              evaluation'|translate}}</mat-label></mat-checkbox>
+
+
+          <mat-form-field appearance="fill" *ngIf="isLocationDisabled">
+
+            <mat-label>{{'Location' |translate}}</mat-label>
+            <input matInput formControlName="location" placeholder="{{'Ex. Chisinau'|translate}}">
+
+
+          </mat-form-field>
+
+
+
+
+
+          <div>
+            <button mat-raised-button matStepperPrevious color="primary"
+              class=" max-[800px]:m-2  mr-2">{{'test.Back'|translate}}</button>
+            <button mat-raised-button matStepperNext color="warn" class="max-[800px]:m-2 animate-bounce"
+              [disabled]="!isPhone.valid" (click)="finishTest()">{{ 'test.Know the Cost'| translate}}</button>
+          </div>
+        </form>
+      </mat-step>
+
+
+      <mat-step *ngIf="isPhone.valid">
+        <ng-template matStepLabel color="warn">{{'Done'|translate}}</ng-template>
+        <p>{{'your answers have been sent, after verification we will return with an offer based on your
+          answers'|translate}}</p>
+        <div>
+          <button mat-raised-button matStepperPrevious color="primary">{{'test.Back'|translate}}</button>
+        </div>
+      </mat-step>
+
+
+
+
+    </mat-stepper>
+
+
+
+  </ng-template>
+</div>

@@ -1,0 +1,48 @@
+
+<div class="bg-black w-full">
+
+<hr>
+
+<div class="mt-14 ">
+  <!-- <div >
+  <p class="text-center bg-black text-white font-bold  mt-60 font-serif p-5 text-3xl">Select Categories </p>
+</div> -->
+
+
+  <div class="min-h-screen w-full flex flex-wrap justify-center items-center  ">
+
+
+    <div *ngFor="let item of ( categories$ | async)?.cat" (click)="onCategory(item.title)"
+      style=" height: 100px; width: 360px;" class="m-4 element drop max-[904px]:hidden ">
+
+
+      <button class="btn"
+  >
+  <span class="text ">{{'category.'+ item.title |translate}}<em></em></span>
+ </button>
+
+
+    </div>
+
+
+<div *ngFor="let item of ( categories$ | async)?.cat" (click)="onCategory(item.title)" class="min-[904px]:hidden m-2 btnPhone">
+<button style="height: 200px; width: 250px;"  mat-stroked-button  >
+
+
+  <span class="text  text-white">{{'category.'+ item.title |translate}}</span>
+
+
+</button>
+</div>
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+</div>

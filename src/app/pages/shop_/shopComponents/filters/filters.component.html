@@ -1,0 +1,62 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{'Manufacturers'|translate}}</mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <mat-selection-list [multiple]="true" role="listitem" [(ngModel)]="selectedManufacturer"
+    (selectionChange)="onShowManufacturer()">
+    <mat-list-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer">
+
+      <p class="truncate ">{{manufacturer}}</p>
+    </mat-list-option>
+  </mat-selection-list>
+
+
+
+</mat-expansion-panel>
+
+
+
+
+<mat-expansion-panel style="margin: 5px 0  5px 0 ;">
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{'Price'|translate}}</mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <mat-slider min="{{this.setPriceMin}}" max="{{this.setPriceMax}}" discrete [displayWith]="formatLabel"
+    (input)="onPriceChange()" style="width: 97%">
+    <input value="minPrice" [(ngModel)]="minPrice" matSliderStartThumb>
+    <input value="maxPrice" [(ngModel)]="maxPrice" matSliderEndThumb>
+  </mat-slider>
+
+</mat-expansion-panel>
+
+
+<mat-expansion-panel>
+
+
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{'Categories'|translate}}</mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <mat-selection-list [multiple]="false" role="listitem" [(ngModel)]="selectedCategory"
+    (selectionChange)="onCategorySelected()">
+    <mat-list-option *ngFor="let category of categories" [value]="category">
+
+      <p class="truncate ">{{'category.'+category|translate}}</p>
+    </mat-list-option>
+  </mat-selection-list>
+
+
+</mat-expansion-panel>
+
+
+<mat-expansion-panel style="margin: 5px 0  5px 0 ;">
+
+  <mat-expansion-panel-header>
+    <mat-panel-title>{{'Reset Filters'|translate}}</mat-panel-title>
+  </mat-expansion-panel-header>
+  <button class="w-10/12" mat-raised-button (click)="onReset()">{{'Reset'|translate}}</button>
+</mat-expansion-panel>
